@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
 
     Rigidbody rb;
     [SerializeField] float speed;
+    [SerializeField] float sprintMultiplier = 1.5f;
 
     [SerializeField] float jumpForce; 
     [SerializeField] Transform groundChecker;
@@ -21,21 +22,25 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        playerMovement();
-        
-        if(Input.GetKeyDown(KeyCode.Space) && IsOnGround()){
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-        }
-
-    }
-
-    void playerMovement(){
+        //Movement
         float x = Input.GetAxisRaw("Horizontal");
         float z = Input.GetAxisRaw("Vertical");
 
         Vector3 moveBy = transform.right * x + transform.forward * z;
 
-        rb.MovePosition(transform.position + moveBy.normalized * speed * Time.deltaTime);
+        float actualSpeed = speed;
+        if(Input.GetKey(KeyCode.LeftShift)){
+            actualSpeed *= sprintMultiplier;
+        }
+
+        rb.MovePosition(transform.position + moveBy.normalized * actualSpeed * Time.deltaTime);
+        
+
+        //Jumping 
+        if(Input.GetKeyDown(KeyCode.Space) && IsOnGround()){
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        }
+
     }
 
     bool IsOnGround(){
