@@ -157,13 +157,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80ff4e575383040449897245f8a58421, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 75
+  speed: 50
+  sprintMultiplier: 1.5
   jumpForce: 5
   groundChecker: {fileID: 1325024656}
   checkRadius: 0.25
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
+  crouchHeight: 0.5
+  lyingHeight: 0.25
+  normalHeight: 1
 --- !u!54 &252332237
 Rigidbody:
   m_ObjectHideFlags: 0
