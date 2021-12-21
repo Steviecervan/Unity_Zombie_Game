@@ -15,7 +15,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] LayerMask groundLayer;
 
     [SerializeField] float crouchHeight;
-    [SerializeField] float lyingHeight;
     [SerializeField] float normalHeight;
     // Start is called before the first frame update
     void Start()
@@ -48,11 +47,8 @@ public class PlayerMovement : MonoBehaviour
         //Crouching
         Vector3 newScale = new Vector3(transform.localScale.x, normalHeight, transform.localScale.z);
 
-        if(Input.GetKey(KeyCode.C)){
+        if(Input.GetKey(KeyCode.LeftControl)){
             newScale.y = crouchHeight;
-        }
-        else if(Input.GetKey(KeyCode.Z)){
-            newScale.y = lyingHeight;
         }
 
         transform.localScale = newScale;
